@@ -1,26 +1,25 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import {  createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 
 export interface LayoutState {
-    sideMenuOpen: boolean;
+  sideMenuOpen: boolean;
 }
 
 const initialState: LayoutState = {
-    sideMenuOpen: false
+  sideMenuOpen: false,
 };
 
 export const layoutSlice = createSlice({
-    name: 'layout',
-    initialState,
-    reducers: {
-        toggleSideMenu: (state) => {
-
-            state.sideMenuOpen = !state.sideMenuOpen;
-        },
+  name: "layout",
+  initialState,
+  reducers: {
+    toggleSideMenu: (state) => {
+      state.sideMenuOpen = !state.sideMenuOpen;
     },
+  },
 });
 
-export const { toggleSideMenu, } = layoutSlice.actions;
+export const { toggleSideMenu } = layoutSlice.actions;
 
 export const selectLayout = (state: RootState) => state.layout;
 

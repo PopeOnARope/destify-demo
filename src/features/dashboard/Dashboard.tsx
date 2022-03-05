@@ -1,49 +1,36 @@
 import React, { useEffect, useState } from "react";
-import Card from "@mui/material/Card";
-import MenuIcon from "@mui/icons-material/Menu";
 import MoreVert from "@mui/icons-material/MoreVert";
 
 import DoorIcon from "@mui/icons-material/MeetingRoom";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import styles from "./dashboard.module.css";
-import { loadDashboard, room, selectDashboard } from "./dashboardSlice";
+import { loadDashboard, selectDashboard } from "./dashboardSlice";
 import {
-  AppBar,
   Avatar,
-  Badge,
   Box,
-  Button,
-  ButtonGroup,
   CardActions,
   CardContent,
-  CardHeader,
   CardMedia,
   Chip,
-  Collapse,
   IconButton,
   Tab,
   Tabs,
-  Toolbar,
   Typography,
 } from "@mui/material";
-import { blue, red, teal } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 import {
-  Check,
-  CheckCircle,
   CheckCircleOutlined,
   ErrorOutlined,
-  Money,
   Paid,
 } from "@mui/icons-material";
 
 const Dashboard: React.FC = () => {
   const data = useAppSelector(selectDashboard);
-  const dispatch = useAppDispatch();
 
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadDashboard());
-  }, []);
+  }, [dispatch]);
 
   const { rooms } = data;
 

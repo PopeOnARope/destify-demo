@@ -2,11 +2,10 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import dashboardReducer from "../features/dashboard/dashboardSlice";
 import layoutReducer from "../features/layout/layoutSlice";
 
-
 export const store = configureStore({
   reducer: {
     dashboard: dashboardReducer,
-    layout: layoutReducer
+    layout: layoutReducer,
   },
 });
 

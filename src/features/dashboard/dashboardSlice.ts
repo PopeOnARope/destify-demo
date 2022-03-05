@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 import { fetchDashboard } from "./dashboardAPI";
 
 export interface room {
@@ -14,6 +14,7 @@ export interface dashboardState {
 }
 
 const initialState: dashboardState = { rooms: [], status: "loading" };
+
 export const loadDashboard = createAsyncThunk(
   "dashboard/fetchDashboard",
   async () => {

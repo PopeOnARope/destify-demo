@@ -16,7 +16,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { blue, green, grey, pink, purple, red } from "@mui/material/colors";
+import { blue, green, grey, purple, red } from "@mui/material/colors";
 
 const sections = [
   {
