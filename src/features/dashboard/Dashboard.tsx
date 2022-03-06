@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import MoreVert from "@mui/icons-material/MoreVert";
-
-import DoorIcon from "@mui/icons-material/MeetingRoom";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { loadDashboard, selectDashboard } from "./dashboardSlice";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Avatar,
   Box,
   CardActions,
@@ -17,11 +17,18 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import { blue } from "@mui/material/colors";
+import { blue, green, grey, teal } from "@mui/material/colors";
 import {
   CheckCircleOutlined,
+  EditLocation,
   ErrorOutlined,
   Paid,
+  MoreVert,
+  MeetingRoom,
+  ExpandMore,
+  MonetizationOnOutlined,
+  Person,
+  Cancel,
 } from "@mui/icons-material";
 
 const Dashboard: React.FC = () => {
@@ -53,6 +60,8 @@ const Dashboard: React.FC = () => {
     paymentStatus,
     remainingBalance,
     hotelDescription,
+    adults,
+    children,
   } = selectedRoom;
 
   const handleSelectRoom = (event: React.SyntheticEvent, newValue: number) => {
@@ -61,12 +70,19 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Tabs onChange={handleSelectRoom} value={selectedRoomIdx}>
+      <Tabs
+        onChange={handleSelectRoom}
+        value={selectedRoomIdx}
+        variant="scrollable"
+      >
         {rooms.map((room: object, idx: number) => (
           <Tab
             label={`Room ${idx + 1}`}
             id={`simple-tab-${idx}`}
             aria-controls={`simple-tab-${idx}`}
+            sx={{
+              textTransform: "none",
+            }}
           />
         ))}
       </Tabs>
@@ -87,20 +103,26 @@ const Dashboard: React.FC = () => {
           }}
         >
           <Avatar sx={{ bgcolor: blue[500], color: blue[900] }}>
-            <DoorIcon />
+            <MeetingRoom />
           </Avatar>
         </Box>
         <Box sx={{ textAlign: "left" }}>
-          <Typography variant="h6">{roomName}</Typography>
-          <Typography variant="caption" display={"block"}>
-            {groupName}
+          <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+            {roomName}
           </Typography>
-          <Typography variant="caption" display={"block"}>
-            {hotelName} - {roomType}
-          </Typography>
-          <Typography variant="caption" display={"block"}>
-            {travelStartDate} - {travelEndDate}
-          </Typography>
+          {[
+            groupName,
+            `${hotelName} -  ${roomType}`,
+            `${travelStartDate} - ${travelEndDate}`,
+          ].map((string) => (
+            <Typography
+              variant="caption"
+              display={"block"}
+              sx={{ color: grey[800] }}
+            >
+              {string}
+            </Typography>
+          ))}
         </Box>
         <Box
           sx={{
@@ -145,6 +167,57 @@ const Dashboard: React.FC = () => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing></CardActions>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography
+            color={teal[500]}
+            sx={{ display: "flex", alignItems: "center" }}
+          >
+            <span
+              style={{
+                marginRight: "1rem",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {" "}
+              <EditLocation />
+              Modify
+            </span>{" "}
+            <MonetizationOnOutlined /> Make Payment
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box sx={{ textAlign: "left" }}>
+            <Typography align="left">Guests in this Room</Typography>
+            <Box sx={{ padding: "1rem 0", borderBottom: `1px solid ${grey[500]}` }}>
+              {adults.map((a: object, idx: number) => (
+                <Chip
+                  variant="outlined"
+                  color="success"
+                  icon={<Person />}
+                  label={`Adult ${idx + 1}`}
+                />
+              ))}
+              {children.map((a: object, idx: number) => (
+                <Chip
+                  variant="outlined"
+                  color="success"
+                  icon={<Person />}
+                  label={`Child ${idx + 1}`}
+                />
+              ))}
+            </Box>
+              <Box sx={{padding: '1rem 0'}}>
+                  <Chip color="error" label="Cancel Room" icon={<Cancel />} />
+              </Box>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
     </>
   );
 };

@@ -1,11 +1,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
+import getAge from "../../utils/getAge";
 import { fetchDashboard } from "./dashboardAPI";
 
-export interface room {
-  hotel: any;
-  room: any;
-  group: any;
+interface hotel {
+  hotelName: string;
+  hotelImage: string;
+  hotelDescription: string;
+}
+
+interface room {
+  roomName: string;
+  roomType: string;
+  travelStartDate: string;
+  travelEndDate: string;
+  remainingBalance: string;
+  roomStatus: string;
+  daysTillFinalPaymentDue: number;
+}
+
+interface group {
+  groupName: string;
+}
+
+interface traveler {
+  age: number;
+}
+
+export interface reservation {
+  hotel: hotel[];
+  room: room[];
+  group: group[];
+  travelers: traveler[];
 }
 
 export interface dashboardState {
@@ -23,8 +49,14 @@ export const loadDashboard = createAsyncThunk(
   }
 );
 
-function refineRoomData(selectedRoom: room) {
-  const { room, group, hotel } = selectedRoom;
+function isAdult(traveler: traveler) {
+  return traveler.age > 18;
+}
+
+function refineReservationData(reservation: reservation) {
+  const { room, group, hotel, travelers } = reservation;
+  const adults = travelers.filter((traveler) => traveler.age >= 18);
+  const children = travelers.filter((traveler) => traveler.age < 18);
   const {
     roomName,
     roomType,
@@ -50,6 +82,8 @@ function refineRoomData(selectedRoom: room) {
     daysTillFinalPaymentDue,
     paymentStatus: daysTillFinalPaymentDue ? "Balance Due" : "Past Due",
     hotelDescription,
+    adults,
+    children
   };
 }
 
@@ -64,8 +98,8 @@ export const dashboardSlice = createSlice({
       })
       .addCase(loadDashboard.fulfilled, (state, action) => {
         state.status = "idle";
-        state.rooms = action.payload.roomInfo.map((room: room) =>
-          refineRoomData(room)
+        state.rooms = action.payload.roomInfo.map((reservation: reservation) =>
+          refineReservationData(reservation)
         );
       });
   },
