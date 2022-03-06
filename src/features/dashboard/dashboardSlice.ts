@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import getAge from "../../utils/getAge";
 import { fetchDashboard } from "./dashboardAPI";
 
 interface hotel {
@@ -48,10 +47,6 @@ export const loadDashboard = createAsyncThunk(
     return response;
   }
 );
-
-function isAdult(traveler: traveler) {
-  return traveler.age > 18;
-}
 
 function refineReservationData(reservation: reservation) {
   const { room, group, hotel, travelers } = reservation;

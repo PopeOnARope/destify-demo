@@ -2,6 +2,7 @@ import {
   Cancel,
   DepartureBoard,
   EditLocationSharp,
+  Help,
   ManageAccounts,
   Paid,
   People,
@@ -77,7 +78,7 @@ const sections = [
       {
         title: "FAQs",
         detail: "View frequently asked questions",
-        icon: <ManageAccounts />,
+        icon: <Help />,
         color: "#28a",
       },
       {

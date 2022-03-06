@@ -17,7 +17,7 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import { blue, green, grey, teal } from "@mui/material/colors";
+import { blue, grey, teal } from "@mui/material/colors";
 import {
   CheckCircleOutlined,
   EditLocation,
