@@ -2,13 +2,25 @@ import React from "react";
 import "./App.css";
 import Dashboard from "./features/dashboard/Dashboard";
 import Layout from "./features/layout/Layout";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { purple } from "@mui/material/colors";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#28a",
+    },
+  },
+});
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <Dashboard />
-      </Layout>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Dashboard />
+        </Layout>
+      </ThemeProvider>
     </div>
   );
 }

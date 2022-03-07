@@ -17,7 +17,7 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import { blue, grey, teal } from "@mui/material/colors";
+import { blue, grey, orange, red, teal } from "@mui/material/colors";
 import {
   CheckCircleOutlined,
   EditLocation,
@@ -118,7 +118,7 @@ const Dashboard: React.FC = () => {
             <Typography
               variant="caption"
               display={"block"}
-              sx={{ color: grey[800] }}
+              sx={{ color: grey[700] }}
             >
               {string}
             </Typography>
@@ -149,7 +149,7 @@ const Dashboard: React.FC = () => {
       >
         <Chip
           variant="outlined"
-          color={booked ? "success" : "error"}
+          color={booked ? "primary" : "error"}
           icon={booked ? <CheckCircleOutlined /> : <ErrorOutlined />}
           label={booked ? "Booked" : "Not Booked"}
           sx={{ marginRight: "0.75rem" }}
@@ -162,12 +162,16 @@ const Dashboard: React.FC = () => {
         />
       </CardContent>
       <CardContent>
-        <Typography variant="body1" sx={{ fontSize: "0.75rem" }}>
+        <Typography
+          variant="body1"
+          color={grey[700]}
+          sx={{ fontSize: "0.75rem" }}
+          align="left"
+        >
           {hotelDescription}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing></CardActions>
-      <Accordion>
+      <Accordion sx={{borderTop: 'none'}}>
         <AccordionSummary
           expandIcon={<ExpandMore />}
           aria-controls="panel1a-content"
@@ -175,30 +179,26 @@ const Dashboard: React.FC = () => {
         >
           <Typography
             color={teal[500]}
-            sx={{ display: "flex", alignItems: "center" }}
+            sx={{ display: "flex", alignItems: "center", fontSize:'0.75rem' }}
           >
-            <span
-              style={{
-                marginRight: "1rem",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
               {" "}
-              <EditLocation />
+              <EditLocation fontSize="small" sx={{margin: '0 0.25rem 0 0'}} />
               Modify
-            </span>{" "}
-            <MonetizationOnOutlined /> Make Payment
+            <MonetizationOnOutlined fontSize="small" sx={{margin: '0 0.25rem 0 0.75rem'}} /> Make Payment
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Box sx={{ textAlign: "left" }}>
-            <Typography align="left">Guests in this Room</Typography>
-            <Box sx={{ padding: "1rem 0", borderBottom: `1px solid ${grey[500]}` }}>
+            <Typography align="left" variant="h6">
+              Guests in this Room
+            </Typography>
+            <Box
+              sx={{ padding: "1rem 0", borderBottom: `1px solid ${grey[500]}` }}
+            >
               {adults.map((a: object, idx: number) => (
                 <Chip
                   variant="outlined"
-                  color="success"
+                  color="primary"
                   icon={<Person />}
                   label={`Adult ${idx + 1}`}
                 />
@@ -206,18 +206,56 @@ const Dashboard: React.FC = () => {
               {children.map((a: object, idx: number) => (
                 <Chip
                   variant="outlined"
-                  color="success"
+                  color="primary"
                   icon={<Person />}
                   label={`Child ${idx + 1}`}
                 />
               ))}
             </Box>
-              <Box sx={{padding: '1rem 0'}}>
-                  <Chip color="error" label="Cancel Room" icon={<Cancel />} />
-              </Box>
+            <Box sx={{ padding: "1rem 0" }}>
+              <Chip color="error" label="Cancel Room" icon={<Cancel />} sx={{color: red[100]}} />
+            </Box>
           </Box>
         </AccordionDetails>
       </Accordion>
+      <Box>
+        <Typography align="left" variant="h6">
+          Past Rooms
+        </Typography>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "0.75fr 3fr 0.5fr",
+            padding: "1rem 0",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "0.25rem",
+            }}
+          >
+            <Avatar sx={{ bgcolor: blue[500], color: blue[900] }}>
+              <MeetingRoom />
+            </Avatar>
+          </Box>
+          <Box sx={{ textAlign: "left" }}>
+            <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+              No Past Rooms
+            </Typography>
+
+            <Typography
+              variant="caption"
+              display={"block"}
+              sx={{ color: grey[700] }}
+            >
+              We couldn't find any past rooms in your account.
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 };
