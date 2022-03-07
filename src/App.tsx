@@ -14,13 +14,11 @@ const theme = createTheme({
 
 function App() {
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <Layout>
-          <Dashboard />
-        </Layout>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <Dashboard />
+      </Layout>
+    </ThemeProvider>
   );
 }
 
