@@ -8,7 +8,6 @@ import {
   AccordionSummary,
   Avatar,
   Box,
-  CardActions,
   CardContent,
   CardMedia,
   Chip,
@@ -17,7 +16,7 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import { blue, grey, orange, red, teal } from "@mui/material/colors";
+import { blue, grey, red, teal } from "@mui/material/colors";
 import {
   CheckCircleOutlined,
   EditLocation,
@@ -171,7 +170,7 @@ const Dashboard: React.FC = () => {
           {hotelDescription}
         </Typography>
       </CardContent>
-      <Accordion sx={{borderTop: 'none'}}>
+      <Accordion sx={{ borderTop: "none" }}>
         <AccordionSummary
           expandIcon={<ExpandMore />}
           aria-controls="panel1a-content"
@@ -179,12 +178,16 @@ const Dashboard: React.FC = () => {
         >
           <Typography
             color={teal[500]}
-            sx={{ display: "flex", alignItems: "center", fontSize:'0.75rem' }}
+            sx={{ display: "flex", alignItems: "center", fontSize: "0.75rem" }}
           >
-              {" "}
-              <EditLocation fontSize="small" sx={{margin: '0 0.25rem 0 0'}} />
-              Modify
-            <MonetizationOnOutlined fontSize="small" sx={{margin: '0 0.25rem 0 0.75rem'}} /> Make Payment
+            {" "}
+            <EditLocation fontSize="small" sx={{ margin: "0 0.25rem 0 0" }} />
+            Modify
+            <MonetizationOnOutlined
+              fontSize="small"
+              sx={{ margin: "0 0.25rem 0 0.75rem" }}
+            />{" "}
+            Make Payment
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -213,7 +216,12 @@ const Dashboard: React.FC = () => {
               ))}
             </Box>
             <Box sx={{ padding: "1rem 0" }}>
-              <Chip color="error" label="Cancel Room" icon={<Cancel />} sx={{color: red[100]}} />
+              <Chip
+                color="error"
+                label="Cancel Room"
+                icon={<Cancel />}
+                sx={{ color: red[100] }}
+              />
             </Box>
           </Box>
         </AccordionDetails>

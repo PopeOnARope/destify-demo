@@ -3,7 +3,6 @@ import "./App.css";
 import Dashboard from "./features/dashboard/Dashboard";
 import Layout from "./features/layout/Layout";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { purple } from "@mui/material/colors";
 
 const theme = createTheme({
   palette: {

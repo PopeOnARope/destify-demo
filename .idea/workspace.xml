@@ -70,7 +70,7 @@
       <workItem from="1646405092976" duration="26874000" />
       <workItem from="1646504417926" duration="77000" />
       <workItem from="1646504505776" duration="3631000" />
-      <workItem from="1646508374134" duration="15140000" />
+      <workItem from="1646508374134" duration="15230000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1646515362746</created>
@@ -100,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646610784047</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="changed primary branding color">
+      <created>1646613213182</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646613213182</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,7 +129,8 @@
     <MESSAGE value="remove warnings" />
     <MESSAGE value="Update types, add reservation management section" />
     <MESSAGE value="fixing warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing warnings" />
+    <MESSAGE value="changed primary branding color" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed primary branding color" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
